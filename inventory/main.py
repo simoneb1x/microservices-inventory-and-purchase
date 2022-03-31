@@ -25,16 +25,33 @@ redis = get_redis_connection(
 class Product(HashModel):
     name: str
     price: float
-    quantity_available: int
+    quantity: int
 
     # To make the product connected to the Redis DB, a new Meta class is defined
     class Meta:
         database = redis
 
 @app.get('/products')
-def return_all_keyproducts_in_inventory():
-    return Product.all_pks()
+def return_all_products_in_inventory():
+    return [format(pk) for pk in Product.all_pks()]
+
+def format(pk: str):
+    product = Product.get(pk)
+    return {
+        'id': product.pk,
+        'name': product.name,
+        'price': product.price,
+        'quantity': product.quantity
+    }
 
 @app.post('/products')
-def create(product: Product):
+def create_product(product: Product):
     return product.save()
+
+@app.get('/products/{pk}')
+def return_single_product(pk: str):
+    return Product.get(pk)
+
+@app.delete('/products/{pk}')
+def delete(pk: str):
+    return Product.delete(pk)
