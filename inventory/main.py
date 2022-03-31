@@ -32,5 +32,9 @@ class Product(HashModel):
         database = redis
 
 @app.get('/products')
-def return_all_products_in_inventory():
+def return_all_keyproducts_in_inventory():
     return Product.all_pks()
+
+@app.post('/products')
+def create(product: Product):
+    return product.save()
