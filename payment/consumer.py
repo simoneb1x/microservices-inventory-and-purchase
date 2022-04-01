@@ -1,8 +1,8 @@
-from main import redis, Product
+from main import redis, Order
 import time
 
-key = 'order_completed'
-group = 'inventory-group'
+key = 'refund_order'
+group = 'payment-group'
 
 # Redis Consumer group
 try:
@@ -19,15 +19,9 @@ while True:
         if results != []:
             for result in results:
                 obj = result[1][0][1]
-                
-                try:
-                    product = Product.get(obj['product_id'])
-                    product.quantity -= int(obj['quantity'])
-                    product.save()
-                except:
-                    redis.xadd('refund_order', obj, '*') 
-                    
-                    
+                order = Order.get(obj['pk'])
+                order.status = 'refunded'
+                order.save()
 
     except Exception as exc:
         print(str(exc))
