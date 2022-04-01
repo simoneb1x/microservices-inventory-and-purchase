@@ -5,6 +5,7 @@ from fastapi.background import BackgroundTasks
 from redis_om import get_redis_connection, HashModel
 from starlette.requests import Request
 import requests, time
+from config import HOST, PORT, PASSWORD
 
 # FastAPI app
 app = FastAPI()
@@ -20,9 +21,9 @@ app.add_middleware(
 # This should be a different database. Each MS needs their own database.
 # But since I don't want to pay for a second database, let's pretend it is a second database.
 redis = get_redis_connection(
-    host = "redis-10848.c293.eu-central-1-1.ec2.cloud.redislabs.com",
-    port = 10848,
-    password = "fvwGXiItxmqhFCR9qA0Dth0CUQBkpvaa",
+    host = HOST,
+    port = PORT,
+    password = PASSWORD,
     decode_responses = True
 )
 
