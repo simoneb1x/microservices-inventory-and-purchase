@@ -35,6 +35,13 @@ What needs to be done:
 
 At the moment the project only starts locally. Deployment on the Internet should be foreseen.
 
-### How to run Inventory MS
+### How to run microservices
 
     uvicorn main:app --reload
+
+### How Redis Streams works in this project
+
+1. An event is sent to Redis Streams
+2. When the order is completed, the status of the order is changed
+3. In the meanwhile, a consumer will wait for the order_completed event
+4. An event is sent to Redis Streams with a key (like, 'order_completed')
