@@ -48,6 +48,13 @@ Make sure to be in the correct directory, then:
 
     npm start
 
+### 3.4 Local Ports
+
+- Inventory MS: 8000
+- Inventory Front-End: 3000
+- Payment MS: 8001
+- Payment Front-End: 3001
+
 ## 4 How Redis Streams works in this project
 
 1. An event is sent to Redis Streams
