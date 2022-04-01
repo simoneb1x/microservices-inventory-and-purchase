@@ -33,6 +33,8 @@ What needs to be done:
 
 ## Notes for myself
 
+At the moment the project only starts locally. Deployment on the Internet should be foreseen.
+
 ### How to run Inventory MS
 
     uvicorn main:app --reload
