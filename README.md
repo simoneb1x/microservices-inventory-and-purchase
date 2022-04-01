@@ -30,6 +30,10 @@ What I did:
 - React Frontend for Inventory MS
 - React Frontend for Payment MS
 
+What I have to do:
+
+- Dockerize everything (this would reach MVP1 goal)
+
 ## 3. Notes for myself
 
 At the moment the project only starts locally. Deployment on the Internet should be foreseen.
