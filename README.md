@@ -2,7 +2,7 @@
 
 This is a mockup of a store that is based on microservices architecture.
 
-## Architecture
+## 1. Architecture
 
 The architecture involves:
 
@@ -15,7 +15,7 @@ The architecture involves:
 
 This is still WIP (last commit: 01/04/22).
 
-## Roadmap
+## 2. Roadmap
 
 What I did:
 
@@ -27,30 +27,28 @@ What I did:
 - Background tasks
 - Redis Streams implementation
 - Two consumers for both MS
+- React Frontend for Inventory MS
+- React Frontend for Payment MS
 
-What needs to be done:
-
-- React Frontend implementation
-
-## Notes for myself
+## 3. Notes for myself
 
 At the moment the project only starts locally. Deployment on the Internet should be foreseen.
 
-### How to run microservices
+### 3.1 How to run microservices
 
     uvicorn main:app --reload
 
-### How to run Redis Streams consumers 
+### 3.2 How to run Redis Streams consumers 
 
 Make sure to be in the correct directory, then:
 
     python3 consumer.py
 
-### How to run Front-End
+### 3.3 How to run Front-End
 
     npm start
 
-### How Redis Streams works in this project
+## 4 How Redis Streams works in this project
 
 1. An event is sent to Redis Streams
 2. When the order is completed, the status of the order is changed
