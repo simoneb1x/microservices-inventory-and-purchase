@@ -23,11 +23,11 @@ What I did:
 - Redis DB initialization
 - Products CRUD in inventory
 - Payment MS implementation
+- Internal HTTP requests
+- Background tasks
 
 What needs to be done:
 
-- Internal HTTP requests
-- Background tasks
 - Redis streams implementation
 - React Frontend implementation
 
