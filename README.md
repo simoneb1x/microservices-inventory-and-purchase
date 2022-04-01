@@ -25,10 +25,11 @@ What I did:
 - Payment MS implementation
 - Internal HTTP requests
 - Background tasks
+- Redis Streams implementation
+- Two consumers for both MS
 
 What needs to be done:
 
-- Redis streams implementation
 - React Frontend implementation
 
 ## Notes for myself
