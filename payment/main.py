@@ -1,9 +1,10 @@
+from turtle import back
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
+from fastapi.background import BackgroundTasks
 from redis_om import get_redis_connection, HashModel
 from starlette.requests import Request
-import requests
-import time
+import requests, time
 
 # FastAPI app
 app = FastAPI()
@@ -36,8 +37,12 @@ class Order(HashModel):
     class Meta:
         database = redis
 
+@app.get('/orders/{pk}')
+def get(pk: str):
+    return Order.get(pk)
+
 @app.post('/orders')
-async def create(request: Request): # this will send just ID and quantity. from the ID it will get the product
+async def create(request: Request, background_tasks: BackgroundTasks): # this will send just ID and quantity. from the ID it will get the product
     body = await request.json()
 
     req = requests.get('http://localhost:8000/products/%s' % body['id'])
@@ -54,7 +59,7 @@ async def create(request: Request): # this will send just ID and quantity. from 
 
     order.save()
 
-    order_completed(order)
+    background_tasks.add_task(order_completed, order) # fastApi executes the function in background
 
     return order
 
