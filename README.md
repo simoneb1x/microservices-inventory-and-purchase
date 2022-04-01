@@ -40,6 +40,16 @@ At the moment the project only starts locally. Deployment on the Internet should
 
     uvicorn main:app --reload
 
+### How to run Redis Streams consumers 
+
+Make sure to be in the correct directory, then:
+
+    python3 consumer.py
+
+### How to run Front-End
+
+    npm start
+
 ### How Redis Streams works in this project
 
 1. An event is sent to Redis Streams
